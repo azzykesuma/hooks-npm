@@ -1,0 +1,14 @@
+{
+  "name": "hooks-npm",
+  "version": "1.0.0",
+  "description": "test hooks as npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hooks"
+  ],
+  "author": "azzy",
+  "license": "ISC"
+}
