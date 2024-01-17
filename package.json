@@ -25,5 +25,8 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-terser": "^0.4.4",
     "rollup": "^4.9.5"
+  },
+  "bugs" : {
+    "url" : "https://github.com/azzykesuma/hooks-npm/issues"
   }
 }
