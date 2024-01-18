@@ -10,14 +10,22 @@ import tailwindcss from 'tailwindcss';
 import tailwindConfig from './tailwind.config.js';
 
 const devMode = process.env.NODE_ENV !== 'production';
+const packageJson = require('./package.json');
 
 export default {
     input: 'src/index.ts',
-    output: {
-        file: 'dist/index.ts',
-        format: "es",
-        sourcemap: devMode ? 'inline' : false,
-    },
+    output: [
+      {
+        file: packageJson.main,
+        format: 'cjs',
+        sourcemap: true,
+      },
+      {
+        file: packageJson.module,
+        format: 'esm',
+        sourcemap: true,
+      },
+    ],
     plugins: [
         resolve(),
         babel({
