@@ -29,6 +29,6 @@ export default {
         replace({
             preventAssignment: false,
             'process.env.NODE_ENV': JSON.stringify(devMode ? 'development' : 'production')
-        }),
+        })
     ],
 };

@@ -2,11 +2,7 @@
 import plugin from 'tailwindcss/plugin';
 
 export const important = true;
-export const content = [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./public/index.html",
-    "./UiComponent/*.{js,jsx,ts,tsx}",
-];
+export const content =   ["./src/**/*.{html,js,jsx}"];
 export const theme = {
     extend: {
         backgroundImage: {
