@@ -5,6 +5,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import postcss from 'rollup-plugin-postcss';
 
+import tailwindcss from 'tailwindcss';
+import tailwindConfig from './tailwind.config.js';
+
 const devMode = process.env.NODE_ENV !== 'production';
 
 export default {
@@ -35,6 +38,9 @@ export default {
             inject: {
               insertAt: 'top',
             },
+            plugins: [
+              tailwindcss(tailwindConfig),
+            ],
         }),
         commonjs(),
         replace({
