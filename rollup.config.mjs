@@ -5,25 +5,27 @@ import replace from '@rollup/plugin-replace';
 import postcss from 'rollup-plugin-postcss';
 import typescript from "@rollup/plugin-typescript";
 import { dts } from "rollup-plugin-dts";
+import path from 'path';
 
 import tailwindcss from 'tailwindcss';
 import tailwindConfig from './tailwind.config.js';
 
 const devMode = process.env.NODE_ENV !== 'production';
-const packageJson = require('./package.json');
+import * as packageJson from './package.json' assert { type: "json" };
 
-export default {
-    input: 'src/index.ts',
+export default [
+  {
+    input: path.resolve('src/index.ts'),
     output: [
       {
         file: packageJson.main,
         format: 'cjs',
-        sourcemap: true,
+        sourcemap: 'inline',
       },
       {
         file: packageJson.module,
         format: 'esm',
-        sourcemap: true,
+        sourcemap: 'inline',
       },
     ],
     plugins: [
@@ -46,6 +48,7 @@ export default {
             inject: {
               insertAt: 'top',
             },
+            extract: 'dist/esm/main.css',
             plugins: [
               tailwindcss(tailwindConfig),
             ],
@@ -55,7 +58,13 @@ export default {
             preventAssignment: false,
             'process.env.NODE_ENV': JSON.stringify(devMode ? 'development' : 'production')
         }),
-        typescript(),
-        dts(),
+        typescript({tsconfig: "./tsconfig.json",declaration: true,
+        declarationDir: 'dist',}),
     ],
-};
+  },
+  {
+    input: 'dist/esm/index.d.ts',
+    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
+    plugins: [dts()]
+  },
+];

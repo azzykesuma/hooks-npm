@@ -1,14 +1,16 @@
 {
   "name": "@azzykesuma/hooks-npm",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "test hooks as npm",
   "main": "dist/cjs/index.js",
-  "module" : "dist/esm/index.js",
+  "module": "dist/esm/index.js",
   "scripts": {
     "build:dev": "rollup -c --environment NODE_ENV:development",
-    "build": "rollup -c --environment NODE_ENV:production"
+    "build": "rollup -c --bundleConfigAsCjs",
+    "dev": "rollup -c --watch"
   },
   "type": "module",
+  "types": "dist/types/index.d.ts",
   "keywords": [
     "hooks"
   ],
@@ -28,7 +30,6 @@
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
-    "@open-wc/building-rollup": "^3.0.2",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.1.0",
